@@ -10,10 +10,10 @@ jobs:
 
     steps:
       env:
-        _tag: $(date +s)
+#        _tag: $(date +s)
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag farhantheitguy/applications:$_tag
+      run: docker build . --file Dockerfile --tag farhantheitguy/applications:v3
     - name: login to docker
       uses: docker/login-action@v1
       with:
@@ -23,5 +23,5 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: farhantheitguy/applications
+        tags: farhantheitguy/applications:v3
       
