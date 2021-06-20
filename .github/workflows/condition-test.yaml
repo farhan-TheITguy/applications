@@ -1,0 +1,25 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ICROSERVICE_NAME: "ozone-relay"
+      HAS_DEV: "true"
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run on pull request
+        if: ${{ github.event_name == 'pull_request' }} 
+        run: |
+          echo "This is because of PULL REQUEST"
+          echo $ICROSERVICE_NAME
+          echo $HAS_DEV
+
+      - name: Run on push
+        if: ${{ github.event_name == 'push' }} 
+        run: |
+          echo "This is because of PUSH"
+          echo $ICROSERVICE_NAME
+          echo $HAS_DEV
