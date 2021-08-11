@@ -27,3 +27,4 @@ jobs:
           echo "This is because of PUSH"
           echo $ICROSERVICE_NAME
           echo $HAS_DEV
+          bash print.sh
