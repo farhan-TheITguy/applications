@@ -12,9 +12,6 @@ jobs:
     env:
       ICROSERVICE_NAME: "ozone-relay"
       HAS_DEV: "true"
-      GITHUB_HEAD_REF: ${{ GITHUB_HEAD_REF }}
-      GITHUB_REF: ${{ GITHUB_REF }}
-      GITHUB_BASE_REF: ${{GITHUB_BASE_REF  }}
     steps:
       - uses: actions/checkout@v2
       - name: Run on pull request
