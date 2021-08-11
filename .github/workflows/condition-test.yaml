@@ -12,6 +12,9 @@ jobs:
     env:
       ICROSERVICE_NAME: "ozone-relay"
       HAS_DEV: "true"
+      GITHUB_HEAD_REF: ${{ GITHUB_HEAD_REF }}
+      GITHUB_REF: ${{ GITHUB_REF }}
+      GITHUB_BASE_REF: ${{GITHUB_BASE_REF  }}
     steps:
       - uses: actions/checkout@v2
       - name: Run on pull request
@@ -25,5 +28,6 @@ jobs:
         if: ${{ github.event_name == 'push' }} 
         run: |
           echo "This is because of PUSH"
-          echo $ICROSERVICE_NAME
-          echo $HAS_DEV
+          echo "GITHUB_HEAD_REF = $GITHUB_HEAD_REF"
+          echo "GITHUB_REF = $GITHUB_REF"
+          echo "GITHUB_BASE_REF = $GITHUB_BASE_REF"
