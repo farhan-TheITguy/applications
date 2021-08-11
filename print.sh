@@ -2,4 +2,4 @@
 
 
 echo "==================== From the script ======================"
-echo "GITHUB_REF = $GITHUB_REF"
+echo "Branch name is ${GITHUB_REF##/*}"
