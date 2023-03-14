@@ -27,8 +27,8 @@ jobs:
           else
           echo "name=${{ github.event.inputs.name }}" >> $GITHUB_OUTPUT
           fi
-  deploy:
-    runs-on: bash
-    steps:
-      - name: Run always
-        run: echo "Hello ${{needs.build.outputs.output1}}"
+#   deploy:
+#     runs-on: bash
+#     steps:
+#       - name: Run always
+#         run: echo "Hello ${{needs.build.outputs.output1}}"
