@@ -22,3 +22,4 @@ jobs:
           echo $ICROSERVICE_NAME
           echo $HAS_DEV
           bash print.sh
+          echo "Hello ${{ github.event.inputs.name }}"
