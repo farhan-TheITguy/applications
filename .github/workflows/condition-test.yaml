@@ -27,6 +27,9 @@ jobs:
           else
           echo "name=${{ github.event.inputs.name }}" >> $GITHUB_OUTPUT
           fi
+  deploy:
+    runs-on: bash
+    steps:
       - name: Run on push
         if: ${{ github.event_name == 'push' }} 
         run: |
