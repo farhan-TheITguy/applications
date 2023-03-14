@@ -24,8 +24,12 @@ jobs:
         run: |
           if [[ ${{ github.event_name }} -eq 'push' ]]; then
           echo "name=$name" >> $GITHUB_OUTPUT
+          echo "In if condition"
+          echo " This - ${{ github.event_name }}"
           else
           echo "name=${{ github.event.inputs.name }}" >> $GITHUB_OUTPUT
+          echo "In else condition"
+          echo "This - ${{ github.event.inputs.name }}"
           fi
   deploy:
     runs-on: bash
