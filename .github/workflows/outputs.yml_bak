@@ -1,4 +1,4 @@
-name: CI
+name: outputs
 
 on:
   push:
