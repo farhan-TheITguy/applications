@@ -5,22 +5,16 @@ on:
     branches:
       - main
       - dev
+  workflow_dispatch:
+    inputs:
+      name:
+        default: "Octocat"
+        description: "Name to greet"
 
 jobs:
   build:
     runs-on: bash
-    env:
-      ICROSERVICE_NAME: "ozone-relay"
-      HAS_DEV: "true"
     steps:
-      - uses: actions/checkout@v2
-      - name: Run on pull request
-        if: ${{ github.event_name == 'pull_request' }} 
-        run: |
-          echo "This is because of PULL REQUEST"
-          echo $ICROSERVICE_NAME
-          echo $HAS_DEV
-
       - name: Run on push
         if: ${{ github.event_name == 'push' }} 
         run: |
