@@ -20,7 +20,7 @@ jobs:
       output1: ${{ steps.step1.outputs.name }}
     steps:
       - id: step1
-      - name: Decide variable
+#       - name: Decide variable
         run: |
           if [[ ${{ github.event_name }} -eq 'push' ]]; then
           echo "name=$name" >> $GITHUB_OUTPUT
