@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       name:
-        default: "Octocat"
+        default: "Farhan"
         description: "Name to greet"
 env:
   name: Farhan
