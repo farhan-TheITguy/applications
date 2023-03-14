@@ -22,7 +22,7 @@ jobs:
       - id: step1
 #       - name: Decide variable
         run: |
-          if [[ ${{ github.event_name }} -eq 'push' ]]; then
+          if [[ ${{ github.event_name }} == "push" ]]; then
           echo "name=$name" >> $GITHUB_OUTPUT
           echo "In if condition"
           echo " This - ${{ github.event_name }}"
