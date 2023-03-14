@@ -16,13 +16,16 @@ env:
 jobs:
   build:
     runs-on: bash
+    outputs:
+      output1: ${{ steps.step1.outputs.name }}
     steps:
+      - id: step1
       - name: Decide variable
         run: |
           if [[ ${{ github.event_name }} -eq 'push' ]]; then
-          name=$name
+          echo "name=$name" >> $GITHUB_OUTPUT
           else
-          name=${{ github.event.inputs.name }}
+          echo "name=${{ github.event.inputs.name }}" >> $GITHUB_OUTPUT
           fi
       - name: Run on push
         if: ${{ github.event_name == 'push' }} 
@@ -32,4 +35,4 @@ jobs:
           echo $HAS_DEV
           bash print.sh
       - name: Run always
-        run: echo "Hello $name"
+        run: echo "Hello ${{needs.build.outputs.output1}}"
