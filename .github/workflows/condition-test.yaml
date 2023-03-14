@@ -32,4 +32,4 @@ jobs:
           echo $HAS_DEV
           bash print.sh
       - name: Run always
-        run: echo "Hello ${{ github.event.inputs.name }}"
+        run: echo "Hello $name"
