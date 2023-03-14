@@ -30,12 +30,5 @@ jobs:
   deploy:
     runs-on: bash
     steps:
-      - name: Run on push
-        if: ${{ github.event_name == 'push' }} 
-        run: |
-          echo "This is because of PUSH"
-          echo $ICROSERVICE_NAME
-          echo $HAS_DEV
-          bash print.sh
       - name: Run always
         run: echo "Hello ${{needs.build.outputs.output1}}"
