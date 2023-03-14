@@ -10,11 +10,20 @@ on:
       name:
         default: "Octocat"
         description: "Name to greet"
+env:
+  name: Farhan
 
 jobs:
   build:
     runs-on: bash
     steps:
+      - name: Decide variable
+        run: |
+          if [[ ${{ github.event_name }} -eq 'push' ]]; then
+          name=$name
+          else
+          name=${{ github.event.inputs.name }}
+          fi
       - name: Run on push
         if: ${{ github.event_name == 'push' }} 
         run: |
