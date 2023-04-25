@@ -13,10 +13,10 @@ jobs:
           ls -lrt
           whoami
           aws --version
-
-#   deploy:
-#     runs-on: bash
-#     needs: build
-#     steps:
-#       - name: Run always
-#         run: echo "Hello ${{needs.build.outputs.output1}}"
+      - name: Upload S3
+        uses: shallwefootball/upload-s3-action@v1.2.0
+        id: S3
+        with:
+          aws_bucket: "farhnm-ttn"
+          source_dir: "/home/ubuntu/actions-runner/nohup.out"
+#           destination_dir: "code/cost_report.zip"
