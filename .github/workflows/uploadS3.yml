@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: bash
+    steps:
+      - id: step1
+        run: |
+          pwd
+          ls -lrt
+          whoami
+          aws --version
+
+#   deploy:
+#     runs-on: bash
+#     needs: build
+#     steps:
+#       - name: Run always
+#         run: echo "Hello ${{needs.build.outputs.output1}}"
