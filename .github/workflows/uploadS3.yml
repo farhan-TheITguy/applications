@@ -20,5 +20,5 @@ jobs:
           aws_key_id: ${{ secrets.AWS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws_bucket: "farhnm-ttn"
-          source_dir: "/home/ubuntu/actions-runner/nohup.out"
+          source_dir: "/home/ubuntu/actions-runner/upload"
 #           destination_dir: "code/cost_report.zip"
