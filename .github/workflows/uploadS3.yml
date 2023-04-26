@@ -7,18 +7,19 @@ jobs:
   build:
     runs-on: bash
     steps:
-      - id: step1
+      - name: Configure the CLI
         run: |
           pwd
           ls -lrt
           whoami
+          touch /tmp/testfile.text
           aws --version
-      - uses: actions/checkout@master
-      - name: Upload S3
-        uses: shallwefootball/s3-upload-action@master
-        with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: "farhnm-ttn"
-          source_dir: "/home/ubuntu/actions-runner/upload"
-#           destination_dir: "code/cost_report.zip"
+          export AWS_ACCESS_KEY_ID=${{ secrets.AWS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          export AWS_DEFAULT_REGION=us-east-1
+      - name: Test the CLI
+        run: |
+          aws sts get-caller-identity
+          aws s3 ls
+          aws s3 cp /tmp/testfile.text s3://farhnm-ttn
+          
