@@ -13,6 +13,7 @@ jobs:
       - id: step1
         run: echo "timestamp=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
   build:
+    needs: job1
     runs-on: Linux
     steps:
       - name: Test with environment variables
