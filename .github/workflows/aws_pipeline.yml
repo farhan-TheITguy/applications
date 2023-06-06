@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: bash
+    runs-on: Linux
     steps:
       - name: Configure the CLI
         env:
