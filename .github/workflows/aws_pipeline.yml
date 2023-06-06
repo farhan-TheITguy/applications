@@ -7,6 +7,13 @@ jobs:
   build:
     runs-on: Linux
     steps:
+      - name: Get current date
+        id: timestamp
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H-%M.%S')"
+      - name: Test with environment variables
+        run: echo $FILE_NAME
+        env:
+          FILE_NAME: nightly-tag-${{ steps.date.outputs.timestamp }}
       - name: Configure the CLI
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
@@ -14,7 +21,7 @@ jobs:
           pwd
           ls -lrt
           whoami
-          echo "$GITHUB_CONTEXT"
+          echo "$GITHUB_CONTEXT" > githubcontext
       - name: Test the CLI
         run: |
           aws sts get-caller-identity
