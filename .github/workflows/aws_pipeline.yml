@@ -13,7 +13,7 @@ jobs:
       - name: Test with environment variables
         run: echo $FILE_NAME
         env:
-          FILE_NAME: nightly-tag-${{ steps.date.outputs.timestamp }}
+          FILE_NAME: nightly-tag-${{ steps.timestamp.outputs.timestamp }}
       - name: Configure the CLI
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
