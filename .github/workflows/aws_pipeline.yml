@@ -4,16 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  job1:
+    runs-on: ubuntu-latest
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.timestamp }}
+    steps:
+      - id: step1
+        run: echo "timestamp=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
   build:
     runs-on: Linux
     steps:
       - name: Get current date
         id: timestamp
-        run: echo "timestamp=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
       - name: Test with environment variables
         run: echo $FILE_NAME
         env:
-          FILE_NAME: GitHubContext-${{ steps.timestamp.outputs.timestamp }}.json
+          FILE_NAME: GitHubContext-${{needs.job1.outputs.output1}}.json
       - name: Configure the CLI
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
