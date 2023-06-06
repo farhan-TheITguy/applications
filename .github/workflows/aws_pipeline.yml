@@ -1,0 +1,22 @@
+name: Upload and Notify
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: bash
+    steps:
+      - name: Configure the CLI
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          pwd
+          ls -lrt
+          whoami
+          echo '$GITHUB_CONTEXT'
+      - name: Test the CLI
+        run: |
+          aws sts get-caller-identity
+          aws s3 ls
+          aws s3 cp /tmp/testfile.text s3://farhnm-ttn
