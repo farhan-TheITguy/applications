@@ -14,7 +14,7 @@ jobs:
           pwd
           ls -lrt
           whoami
-          echo '$GITHUB_CONTEXT'
+          echo "$GITHUB_CONTEXT"
       - name: Test the CLI
         run: |
           aws sts get-caller-identity
