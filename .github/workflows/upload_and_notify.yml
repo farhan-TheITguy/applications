@@ -2,6 +2,10 @@ name: Upload and Notify
 
 on:
   workflow_dispatch:
+  
+env:
+  bucket: s3://farhnm/files/
+  src: /tmp
 
 jobs:
   job1:
@@ -17,9 +21,13 @@ jobs:
     runs-on: Linux
     steps:
       - name: Test with environment variables
-        run: echo $FILE_NAME
+        run: |
+          echo $GITHUB_CONTEXT > $src/FILE_NAME
+          cat $src/FILE_NAME
+          aws s3 cp $src/FILE_NAME $bucket
         env:
           FILE_NAME: GitHubContext-${{needs.job1.outputs.output1}}.json
+          GITHUB_CONTEXT: ${{ toJson(github) }}
       - name: Configure the CLI
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
