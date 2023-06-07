@@ -8,7 +8,7 @@ env:
   src: /tmp
 
 jobs:
-  job1:
+  Prereq:
     runs-on: Linux
     # Map a step output to a job output
     outputs:
@@ -17,7 +17,7 @@ jobs:
       - id: step1
         run: echo "timestamp=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
   build:
-    needs: job1
+    needs: Prereq
     runs-on: Linux
     steps:
       - name: Test with environment variables
@@ -28,15 +28,3 @@ jobs:
         env:
           FILE_NAME: GitHubContext-${{needs.job1.outputs.output1}}.json
           GITHUB_CONTEXT: ${{ toJson(github) }}
-      - name: Configure the CLI
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: |
-          pwd
-          ls -lrt
-          whoami
-          echo "$GITHUB_CONTEXT" > githubcontext
-      - name: Test the CLI
-        run: |
-          aws sts get-caller-identity
-          aws s3 ls
