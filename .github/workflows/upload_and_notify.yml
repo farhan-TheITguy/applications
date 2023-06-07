@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Test with environment variables
         run: |
-          echo $GITHUB_CONTEXT > $src/FILE_NAME
+          echo $GITHUB_CONTEXT > $src/$FILE_NAME
           cat $src/FILE_NAME
           aws s3 cp $src/FILE_NAME $bucket
         env:
