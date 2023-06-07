@@ -23,8 +23,8 @@ jobs:
       - name: Test with environment variables
         run: |
           echo $GITHUB_CONTEXT > $src/$FILE_NAME
-          cat $src/FILE_NAME
-          aws s3 cp $src/FILE_NAME $bucket
+          cat $src/$FILE_NAME
+          aws s3 cp $src/$FILE_NAME $bucket
         env:
           FILE_NAME: GitHubContext-${{needs.job1.outputs.output1}}.json
           GITHUB_CONTEXT: ${{ toJson(github) }}
